@@ -1,5 +1,10 @@
-<!DOCTYPE html>
-<html>
+{% extends "layout.html" %}
+{% set active_page = "home" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!--page content-->
   <head>
       <title>CORGIS Drug Use Data Set Summary</title>
 	  <link rel="stylesheet" type="text/css" href= {{url_for("static", filename= "rstyle.css")}}>
@@ -15,3 +20,4 @@
     According to the survey, "about two-thirds (66.6%) of people aged 12 or older reported in 2014 that they drank alcohol in the past 12 months, with 6.4% meeting criteria for an alcohol use disorder." (<a href="https://www.samhsa.gov/atod">SAMHSA's website</a>) <br>
     Along with these statistics, men were accountable for higher rates of drug dependence, Native Americans and Alaskan natives have the highest rates among the various race groups, <br>
     and, according to the SAMHSA, "More than 50% of people aged 12 or older in 2011-2012 who used pain relievers for non-medical reasons in the past year got them from a friend or relative."
+{% endblock %}
