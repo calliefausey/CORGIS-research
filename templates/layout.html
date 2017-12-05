@@ -10,7 +10,7 @@
     <!-- Latest compiled and minified bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" type="text/css" href= {{url_for("static", filename= "rstyle.css")}}>
   <title> {% block title %}{% endblock %} - My Webpage</title>
   
   </head>
@@ -25,6 +25,7 @@
             <li {% if active_page == "home" %} class="active" {% endif %}><a href=".">Home</a></li>
             <li {% if active_page == "page1" %} class="active" {% endif %}><a href="p1">Page 1</a></li> <!-- p1 will show up in the url -->
             <li {% if active_page == "page2" %} class="active" {% endif %}><a href="p2">Page 2</a></li>
+			<li {% if active_page == "page3" %} class="active" {% endif %}><a href="p2">Page 3</a></li>
           </ul>
       </div>
     </nav>
