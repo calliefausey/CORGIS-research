@@ -9,10 +9,10 @@ def get_state_options():
         rates = json.load(corgis_data)
     state = rates[0]["State"]
     pick = ""
-    for c in counties:
-        if state != c["State"]:
+    for r in rates:
+        if state != r["State"]:
             pick += Markup("<option value=" + state +">" + state + "</option>")
-            state = c["State"]
+            state = r["State"]
     return pick
 	
 @app.route("/")
