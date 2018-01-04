@@ -5,9 +5,9 @@ import json
 app = Flask(__name__) #__name__ = "__main__" if this is the file that was run.  Otherwise, it is the name of the file (ex. webapp)
  
 def get_state_options():
-    with open('drugs.json') as demographics_data:
-        counties = json.load(demographics_data)
-    state = counties[0]["State"]
+    with open('drugs (1).json') as corgis_data:
+        rates = json.load(corgis_data)
+    state = rates[0]["State"]
     pick = ""
     for c in counties:
         if state != c["State"]:
