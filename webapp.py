@@ -3,7 +3,18 @@ import os
 import json
 
 app = Flask(__name__) #__name__ = "__main__" if this is the file that was run.  Otherwise, it is the name of the file (ex. webapp)
-       
+ 
+def get_state_options():
+    with open('drugs.json') as demographics_data:
+        counties = json.load(demographics_data)
+    state = counties[0]["State"]
+    pick = ""
+    for c in counties:
+        if state != c["State"]:
+            pick += Markup("<option value=" + state +">" + state + "</option>")
+            state = c["State"]
+    return pick
+	
 @app.route("/")
 def render_main():
     return render_template('home.html')
