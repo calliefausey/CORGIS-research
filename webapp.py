@@ -16,12 +16,13 @@ def get_state_options():
     return pick
 
 def totals(state):
+    print("here")
     with open('drugs (1).json') as corgis_data:
         rates = json.load(corgis_data)
     total = 0
     for r in rates:
         if state == r["State"]:
-            total += r["Rates"]["Illicit Drugs"]["12-17"]
+            total += r["Totals"]["Illicit Drugs"]["Abuse Past Month"]["12-17"]
     return total
 	
 @app.route("/")
@@ -46,4 +47,4 @@ def get_total():
     return render_template('page1.html', total = totals(area), option = get_state_options())
 
 if __name__=="__main__":
-    app.run(debug=False, port=54321)
+    app.run(debug=False)
