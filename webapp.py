@@ -22,7 +22,7 @@ def totals(state):
     total = 0
     for r in rates:
         if state == r["State"]:
-            total == r["Totals"]["Illicit Drugs"]["Abuse Past Month"]["12-17"]
+            total += r["Totals"]["Illicit Drugs"]["Abuse Past Month"]["12-17"]
     return total
 	
 @app.route("/")
