@@ -5,14 +5,15 @@
 
 {% block content %}
 <!--page content-->
-    <h1>Page 1</h1>
+    <h1>Totals per state of drug-abusive teenagers.</h1>
+    <p> Drug abuse is a major problem among modern day teenagers, here are the totals for each state. </p>
     <form name="select" action="/app">
       <select name="pickstate">
         {{ option }}
       </select>
       <input type="submit" value="Submit">
     </form>
-    {{ total }}
+<p> This state's total for drug-abusing teens is {{ total }} </p>
   </body>
 
 {% endblock %}
