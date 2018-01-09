@@ -19,11 +19,19 @@ app = Flask(__name__) #__name__ = "__main__" if this is the file that was run.  
 def render_main():
     return render_template('home.html')
 
-@app.route("/p1")	
+#@app.route("/p1")	
+#def render_page1():
+    #with open('drugs (1).json') as rates_data:
+        #rates = json.load(rates_data)
+    #return render_template('page1.html', option = get_state_options(rates))
+
+@app.route("/p1")
 def render_page1():
     with open('drugs (1).json') as rates_data:
         rates = json.load(rates_data)
-    return render_template('page1.html', option = get_state_options(rates))
+    if 'state' in request.args:
+        return render_template('page1.html', options = get_state_options(rates), total = totals(rates, request.args['state']), state = request.args['state'])
+    return render_template('page1.html', options = get_state_options(rates))
 
 @app.route("/p2")
 def render_page2():
@@ -53,10 +61,10 @@ def totals(state):
     return total
 	
 
-@app.route("/app", methods=['GET','POST'])
-def get_total():  
-    area = request.args['pickstate']
-    return render_template('page1.html', total = totals(area), option = get_state_options(rates))
+#@app.route("/app", methods=['GET','POST'])
+#def get_total():  
+    #area = request.args['pickstate']
+    #return render_template('page1.html', total = totals(area), option = get_state_options(rates))
 
 if __name__=="__main__":
     app.run(debug=False)
