@@ -51,7 +51,6 @@ def get_state_options(rates):
     return options
 
 def totals(state):
-    print("here")
     with open('drugs (1).json') as corgis_data:
         rates = json.load(corgis_data)
     total = 0
