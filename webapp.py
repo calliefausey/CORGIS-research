@@ -47,7 +47,7 @@ def get_state_options(rates):
     for r in rates:
         if r["State"] not in states:
             states.append(r["State"])
-            options += Markup("<option value=\"" + r["State"] + "\">" + r["State"] + "</option>")
+            stateoptions += Markup("<option value=\"" + r["State"] + "\">" + r["State"] + "</option>")
     return stateoptions
     
 def get_year_options(rates):
@@ -56,7 +56,7 @@ def get_year_options(rates):
     for r in rates:
         if r["Year"] not in years:
             states.append(r["Year"])
-            options += Markup("<option value=\"" + r["Year"] + "\">" + r["Year"] + "</option>")
+            yearoptions += Markup("<option value=\"" + r["Year"] + "\">" + r["Year"] + "</option>")
     return yearoptions
 
 def totals(state, year):
