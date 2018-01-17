@@ -30,7 +30,7 @@ def render_page1():
     with open('drugs (1).json') as rates_data:
         rates = json.load(rates_data)
     if 'state' and 'year' in request.args:
-        return render_template('page1.html', stateoptions = get_state_options(rates), yearoptions = get_year_options(rates), total = totals((request.args['state']), (request.args['year'])), state = request.args['state'], year = request.args['year'])
+        return render_template('page1.html', stateoptions = get_state_options(rates), yearoptions = get_year_options(rates), total = totals(request.args['state'], request.args['year']), state = request.args['state'], year = request.args['year'])
     return render_template('page1.html', stateoptions = get_state_options(rates), yearoptions = get_year_options(rates))
 
 @app.route("/p2")
