@@ -36,8 +36,10 @@ def render_main():
 def render_page1():
     with open('drugs (1).json') as rates_data:
         rates = json.load(rates_data)
-    alcoholData = get_highest_rate(rates)
-    return render_template('page1.html', highest = alcoholData[0], rate = alcoholData[1])
+    if 'state' in request.args:
+	r = get_year_data(rates, request.args['year'])
+        return render_template('page1.html', soptions = get_state_options(rates), abuseRate = r["Alcohol"]["In Minors"]["Abuse"])
+    return render_template('page1.html', soptions = get_state_options(rates))
 
 @app.route("/p2")
 def render_page2():
@@ -47,14 +49,14 @@ def render_page2():
 def render_page3():
     return render_template('page3.html')
 
-def get_year_options(rates):
-    years = []
-    options = ""
-    for r in rates:
-        if r["Year"] not in years:
-            years.append(r["Year"])
-            options += Markup("<option value=\"" + str(r["Year"]) + "\">" + str(r["Year"]) + "</option>")
-    return options
+#def get_year_options(rates):
+    #years = []
+    #options = ""
+    #for r in rates:
+        #if r["Year"] not in years:
+            #years.append(r["Year"])
+            #options += Markup("<option value=\"" + str(r["Year"]) + "\">" + str(r["Year"]) + "</option>")
+    #return options
 
 def get_state_options(rates):
     states = []
@@ -74,19 +76,12 @@ def get_state_options(rates):
             #total += r["Totals"]["Illicit Drugs"]["Abuse Past Month"]["12-17"]    
     #return str(total)
 
-def get_rate_data(rates, get_state):
+def get_year_data(rates, get_year):
     for r in rates:
-        if r["State"] == get_state:
+        if r["Year"] == get_year:
             return r
 
-def get_highest_rate(rates):
-    rate = 0
-    highestRate = ""
-    for r in rates:
-        if r["Alcohol"]["In Minors"]["Abuse"] > rate:
-            rate = r["Alcohol"]["In Minors"]["Abuse"]
-            highestRate = r["State"]
-    return [highestRate, rate]
+
 	
 
 #@app.route("/app", methods=['GET','POST'])
