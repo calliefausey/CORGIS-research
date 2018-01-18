@@ -50,7 +50,11 @@ def render_page2():
 	
 @app.route("/p3")
 def render_page3():
-    return render_template('page3.html')
+    with open('drugs (1).json') as rates_data:
+        rates = json.load(rates_data)
+    if 'state' in request.args:
+        return render_template('page3.html', soptions = get_state_options(rates), earlyRate = get_early_rate(rates, request.args['state']), earlyTotal = get_early_total(rates, request.args['state']), state = request.args['state'])
+    return render_template('page3.html', soptions = get_state_options(rates))
 
 #def get_year_options(rates):
     #years = []
@@ -83,6 +87,21 @@ def get_rate(rates, get_state):
         if r["State"] == get_state and r["Year"] == 2014:
             abuseRate += r["Rates"]["Illicit Drugs"]["Abuse Past Month"]["12-17"]
     return abuseRate 
+
+def get_early_total(rates, get_state):
+    earlyTotal = 0
+    for r in rates:
+        if r["State"] == get_state and r["Year"] == 2002:
+            earlyTotal += r["Totals"]["Alcohol"]["In Minors"]["Abuse"]
+    return earlyTotal
+
+def get_early_rate(rates, get_state):
+    earlyRate = 0
+    for r in rates:
+        if r["State"] == get_state and r["Year"] == 2002:
+            earlyRate += r["Rates"]["Illicit Drugs"]["Abuse Past Month"]["12-17"]
+    return earlyRate 
+
 
     
 #def totals(year, state):
