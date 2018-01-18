@@ -56,7 +56,7 @@ def totals(year):
     total = 0
     for r in rates:
         if r["Year"] == year:  
-            total += str(r["Totals"]["Illicit Drugs"]["Abuse Past Month"]["12-17"])    
+            total += str(r["Rates"]["Illicit Drugs"]["Abuse Past Month"]["12-17"])    
     return total
 	
 
