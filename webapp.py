@@ -35,11 +35,7 @@ def render_page1():
 
 @app.route("/p2")
 def render_page2():
-     with open('drugs (1).json') as rates_data:
-        rates = json.load(rates_data)
-    if 'year' in request.args:
-    	return render_template('page2.html', options = get_year_options(rates))
-    return render template('page2.html', options = get_year_options(rates), fact = get_tobacco(model))
+    return render_template('page2.html')
 	
 @app.route("/p3")
 def render_page3():
@@ -63,14 +59,6 @@ def totals(year):
             total += r["Totals"]["Illicit Drugs"]["Abuse Past Month"]["12-17"]    
     return str(total)
 	
-def get_tobacco(model):
-	fact = ""
-	for r in rates:
-		if r['Year] == model:
-		     fact += Markup("<p>"+ "26+: "+str(c["Perceptions of Risk"]["26+"]) + "</p>")
-		     fact += Markup("<p>"+ "18-25: "+str(c["Perceptions of Risk"]["18-25"]) + "</p>")
-		     fact += Markup("<p>"+ "12-17: "+str(c["Perceptions of Risk"]["12-17"]) + "</p>")
-	return fact
 
 #@app.route("/app", methods=['GET','POST'])
 #def get_total():  
