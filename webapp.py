@@ -53,9 +53,9 @@ def get_year_options(rates):
 def totals(year):
     with open('drugs (1).json') as corgis_data:
         rates = json.load(corgis_data)
-    total = ""
+    total = 0
     for r in rates:
-        if year == r["Year"]:  
+        if r["Year"] == year:  
             total += str(r["Totals"]["Illicit Drugs"]["Abuse Past Month"]["12-17"])    
     return total
 	
