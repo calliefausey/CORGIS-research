@@ -13,9 +13,9 @@
     <br><br>
     <input type="submit">
   </form>
-  {% if abuseRate is defined %}
+  {% if abuseTotal is defined %}
     <br>
-    <h2>{{ abuseRate }}</h2>
-    <p>This state's total of minors who abuse alcohol in accordance to the most recent year recorded (2014) is {{ abuseRate }}</p>
+    <h2>{{ abuseTotal }}</h2>
+    <p>This state's total of minors who abuse alcohol in accordance to the most recent year recorded (2014) is {{ abuseTotal }}</p>
   {% endif %}
 {% endblock %}
