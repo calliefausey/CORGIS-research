@@ -66,10 +66,10 @@ def get_state_options(rates):
             soptions += Markup("<option value=\"" + r["State"] + "\">" + r["State"] + "</option>")
     return soptions
 
-def get_rate(rates, selected_state):
+def get_rate(rates, get_state):
     abuseRate = 0
     for r in rates:
-        if r["State"] == selected_state and r["Year"] == 2014:
+        if r["State"] == get_state and r["Year"] == 2014:
             abuseRate += r["Totals"]["Alcohol"]["In Minors"]["Abuse"]
     return abuseRate
 
