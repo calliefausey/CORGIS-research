@@ -15,11 +15,7 @@
   </form>
   {% if earlyTotal is defined %}
     <br>
-    <p>This state's earliest recorded total number of minors who abused alcohol is {{ earlyTotal }}</p>
-  {% endif %}
-  {% if earlyRate is defined %}
-    <br>
-    <p>And the state's rate of minors who abused drugs is {{ earlyRate }}</p>
+    <p>This state's earliest recorded total number of minors who abused alcohol is {{ earlyTotal }} and the rate of those who abused drugs is {{ earlyRate }}</p>
   {% endif %}
 {% endblock %}
 
