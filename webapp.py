@@ -37,12 +37,16 @@ def render_page1():
     with open('drugs (1).json') as rates_data:
         rates = json.load(rates_data)
     if 'state' in request.args:
-        return render_template('page1.html', soptions = get_state_options(rates), abuseRate = get_rate(rates, request.args['state']), state = request.args['state'])
+        return render_template('page1.html', soptions = get_state_options(rates), abuseTotal = get_total(rates, request.args['state']), state = request.args['state'])
     return render_template('page1.html', soptions = get_state_options(rates))
 
 @app.route("/p2")
 def render_page2():
-    return render_template('page2.html')
+    with open('drugs (1).json') as rates_data:
+        rates = json.load(rates_data)
+    if 'state' in request.args:
+        return render_template('page2.html', soptions = get_state_options(rates), abuseRate = get_rate(rates, request.args['state']), state = request.args['state'])
+    return render_template('page2.html', soptions = get_state_options(rates))
 	
 @app.route("/p3")
 def render_page3():
@@ -66,12 +70,19 @@ def get_state_options(rates):
             soptions += Markup("<option value=\"" + r["State"] + "\">" + r["State"] + "</option>")
     return soptions
 
+def get_total(rates, get_state):
+    abuseTotal = 0
+    for r in rates:
+        if r["State"] == get_state and r["Year"] == 2014:
+            abuseTotal += r["Totals"]["Alcohol"]["In Minors"]["Abuse"]
+    return abuseTotal
+
 def get_rate(rates, get_state):
     abuseRate = 0
     for r in rates:
         if r["State"] == get_state and r["Year"] == 2014:
             abuseRate += r["Totals"]["Alcohol"]["In Minors"]["Abuse"]
-    return abuseRate
+    return abuseRate += r[
 
     
 #def totals(year, state):
