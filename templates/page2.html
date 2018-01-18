@@ -5,14 +5,18 @@
 
 {% block content %}
 <!--page content-->
-   <h2>Tobacco</h2>
-  <form action = "/p2">
-    <select name = "year">
-      {{ options }}
+  <h2>Drug Abuse Rates</h2>
+  <p> The abuse of drugs is a major problem among modern-day teenagers; here are the most recent rates per state of abuse in the last month for 2014. </p>
+  <form action="/p2">
+    <select name="state">
+      {{ soptions }}
     </select>
-   <br><br>
-   <input type="submit">
-   {{ fact }}
+    <br><br>
+    <input type="submit">
   </form>
-
+  {% if abuseRate is defined %}
+    <br>
+    <h2>{{ abuseRate }}</h2>
+    <p>This state's rate of minors who abuse drugs in accordance to the most recent year recorded (2014) is {{ abuseRate }}</p>
+  {% endif %}
 {% endblock %}
