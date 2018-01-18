@@ -35,7 +35,10 @@ def render_page1():
 
 @app.route("/p2")
 def render_page2():
-    return render_template('page2.html', options = get_year_options(rates))
+     with open('drugs (1).json') as rates_data:
+        rates = json.load(rates_data)
+    if 'year' in request.args:
+    	return render_template('page2.html', options = get_year_options(rates))
     return render template('page2.html', options = get_year_options(rates), fact = get_tobacco(model))
 	
 @app.route("/p3")
