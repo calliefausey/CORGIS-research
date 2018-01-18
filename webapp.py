@@ -81,8 +81,8 @@ def get_rate(rates, get_state):
     abuseRate = 0
     for r in rates:
         if r["State"] == get_state and r["Year"] == 2014:
-            abuseRate += r["Totals"]["Alcohol"]["In Minors"]["Abuse"]
-    return abuseRate += r[
+            abuseRate += r["Rates"]["Illicit Drugs"]["Abuse Past Month"]["12-17"]
+    return abuseRate 
 
     
 #def totals(year, state):
