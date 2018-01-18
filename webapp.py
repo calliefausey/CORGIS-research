@@ -38,7 +38,6 @@ def render_page1():
         rates = json.load(rates_data)
     if 'state' in request.args:
         return render_template('page1.html', soptions = get_state_options(rates), abuseRate = get_rate(rates, request.args['state']), state = request.args['state'])
-    if r["Year"] == 2014:
     return render_template('page1.html', soptions = get_state_options(rates))
 
 @app.route("/p2")
@@ -70,7 +69,7 @@ def get_state_options(rates):
 def get_rate(rates, selected_state):
     abuseRate = 0
     for r in rates:
-        if r["State"] == selected_state:
+        if r["State"] == selected_state and r["Year"] == 2014:
             abuseRate += r["Totals"]["Alcohol"]["In Minors"]["Abuse"]
     return abuseRate
 
