@@ -70,7 +70,7 @@ def get_rate(rates, selected_state):
     abuseRate = 0
     for r in rates:
         if r["State"] == selected_state:
-            abuseRate += ["Alcohol"]["In Minors"]["Abuse"]
+            abuseRate += r["Alcohol"]["In Minors"]["Abuse"]
     return abuseRate
     
 #def totals(year, state):
