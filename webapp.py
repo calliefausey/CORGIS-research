@@ -29,8 +29,8 @@ def render_main():
 def render_page1():
     with open('drugs (1).json') as rates_data:
         rates = json.load(rates_data)
-    if 'state' and 'year' in request.args:
-        return render_template('page1.html', stateoptions = get_state_options(rates), total = totals(request.args['state']), state = request.args['state'], year = request.args['Year'])
+    if 'state' in request.args:
+        return render_template('page1.html', stateoptions = get_state_options(rates), total = totals(request.args['state']), state = request.args['state'])
     return render_template('page1.html', stateoptions = get_state_options(rates))
 
 @app.route("/p2")
@@ -65,9 +65,7 @@ def totals(state):
     total = 0
     for r in rates:
         if state == r["State"]:  
-            total += r["Totals"]["Illicit Drugs"]["Abuse Past Month"]["12-17"]
-	if 2014 == r["Year"]:
-	    total+= r["Totals"]["Illicit Drugs"]["Abuse Past Month"]["12-17"]		    
+            total += r["Totals"]["Illicit Drugs"]["Abuse Past Month"]["12-17"]    
     return total
 	
 
