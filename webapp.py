@@ -70,7 +70,7 @@ def get_state_options(rates):
 def get_rate(rates, selected_state):
     abuseRate = 0
     for r in rates:
-        if r["State"] == selected_state and r["Year"] == 2014:
+        if r["State"] == selected_state and r["Year"] = 2014:
             abuseRate += r["Totals"]["Alcohol"]["In Minors"]["Abuse"]
     return abuseRate
 
