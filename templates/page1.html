@@ -5,16 +5,17 @@
 
 {% block content %}
 <!--page content-->
-    <h1>Totals per state of drug-abusive teenagers.</h1>
-    <p> Drug abuse is a major problem among modern day teenagers, here are the totals for each year. </p>
-    <form name="select" action="/p1">
-      <select name="state">
-        {{ soptions }}
-      </select>
-      <input type="submit"><!--value type = "Submit" -->
-    </form>
-<br>
-<p> This year's total is {{ abuseRate }} for individuals aged 12-17 who abuse drugs from the year selected.</p>
-  </body>
-
+  <h2>Select State for Most Recent Recorded Total of Alcohol Abuse in Minors for that State.</h2>
+  <form action="/p1">
+    <select name="state">
+      {{ soptions }}
+    </select>
+    <br><br>
+    <input type="submit">
+  </form>
+  {% if abuseRate is defined %}
+    <br>
+    <h2>{{ abuseRate }}</h2>
+    <p>This state's total of minors who abuse alcohol in accordance to the most recent year recorded (2014) is {{ abuseRate }}</p>
+  {% endif %}
 {% endblock %}
