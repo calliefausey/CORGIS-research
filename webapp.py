@@ -25,13 +25,19 @@ def render_main():
         #rates = json.load(rates_data)
     #return render_template('page1.html', option = get_state_options(rates))
 
+#@app.route("/p1")
+#def render_page1():
+    #with open('drugs (1).json') as rates_data:
+        #rates = json.load(rates_data)
+    #if 'year' in request.args:
+        #return render_template('page1.html', options = get_year_options(rates), soptions = get_state_options(rates), total = totals(request.args['year'], request.args['state']), year = request.args['year'], state = request.args['state'])
+    #return render_template('page1.html', options = get_year_options(rates), soptions = get_state_options(rates))
 @app.route("/p1")
 def render_page1():
     with open('drugs (1).json') as rates_data:
         rates = json.load(rates_data)
-    if 'year' in request.args:
-        return render_template('page1.html', options = get_year_options(rates), soptions = get_state_options(rates), total = totals(request.args['year'], request.args['state']), year = request.args['year'], state = request.args['state'])
-    return render_template('page1.html', options = get_year_options(rates), soptions = get_state_options(rates))
+    alcoholData = get_highest_rate(rates)
+    return render_template('page1.html', highest = alcoholData[0], rate = alcoholData[1])
 
 @app.route("/p2")
 def render_page2():
@@ -59,14 +65,28 @@ def get_state_options(rates):
             soptions += Markup("<option value=\"" + str(r["State"]) + "\">" + str(r["State"]) + "</option>")
     return soptions
     
-def totals(year, state):
-    with open('drugs (1).json') as corgis_data:
-        rates = json.load(corgis_data)
-    total = 0
+#def totals(year, state):
+    #with open('drugs (1).json') as corgis_data:
+        #rates = json.load(corgis_data)
+    #total = 0
+    #for r in rates:
+        #if r["Year"] == year and r["State"] == state:  
+            #total += r["Totals"]["Illicit Drugs"]["Abuse Past Month"]["12-17"]    
+    #return str(total)
+
+def get_rate_data(rates, get_state):
     for r in rates:
-        if r["Year"] == year and r["State"] == state:  
-            total += r["Totals"]["Illicit Drugs"]["Abuse Past Month"]["12-17"]    
-    return str(total)
+        if r["State"] == get_state:
+            return r
+
+def get_highest_rate(rates):
+    rate = 0
+    highestRate = ""
+    for r in rates:
+        if r["Alcohol"]["In Minors"]["Abuse"] > rate:
+            rate = r["Alcohol"]["In Minors"]["Abuse"]
+            highestRate = r["State"]
+    return [highestRate, rate]
 	
 
 #@app.route("/app", methods=['GET','POST'])
