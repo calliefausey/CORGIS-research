@@ -53,11 +53,11 @@ def get_year_options(rates):
 def totals(year):
     with open('drugs (1).json') as corgis_data:
         rates = json.load(corgis_data)
-    total = ""
+    total = 0
     for r in rates:
         if r["Year"] == year:  
-            total += Markup("<p>"+ "Total drug abuse this year "+str(c["Totals"]["Illicit Drugs"]["Abuse Past Month"]) + "</p>")    
-    return total
+            total += r["Totals"]["Illicit Drugs"]["Abuse Past Month"]["12-17"]    
+    return str(total)
 	
 
 #@app.route("/app", methods=['GET','POST'])
