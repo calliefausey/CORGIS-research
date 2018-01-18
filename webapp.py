@@ -56,8 +56,8 @@ def totals(year):
     total = 0
     for r in rates:
         if r["Year"] == year:  
-            total += str(r["Rates"]["Illicit Drugs"]["Abuse Past Month"]["12-17"])    
-    return total
+            total += r["Illicit Drugs"]["Abuse Past Month"]["12-17"]    
+    return str(total)
 	
 
 #@app.route("/app", methods=['GET','POST'])
