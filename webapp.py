@@ -41,7 +41,7 @@ def render_page2():
 def render_page3():
     return render_template('page3.html')
 
-def get_state_options(rates):,,
+def get_state_options(rates):
     states = []
     options = ""
     for r in rates:
