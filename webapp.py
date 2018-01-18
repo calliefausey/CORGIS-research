@@ -37,7 +37,7 @@ def render_page1():
     with open('drugs (1).json') as rates_data:
         rates = json.load(rates_data)
     if 'state' in request.args:
-	r = get_year_data(rates, request.args['year'])
+	r = get_rate_data(rates, request.args['state'])
         return render_template('page1.html', soptions = get_state_options(rates), abuseRate = r["Alcohol"]["In Minors"]["Abuse"])
     return render_template('page1.html', soptions = get_state_options(rates))
 
@@ -76,9 +76,9 @@ def get_state_options(rates):
             #total += r["Totals"]["Illicit Drugs"]["Abuse Past Month"]["12-17"]    
     #return str(total)
 
-def get_year_data(rates, get_year):
+def get_rate_data(rates, get_state):
     for r in rates:
-        if r["Year"] == get_year:
+        if r["State"] == get_state:
             return r
 
 
