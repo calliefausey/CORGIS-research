@@ -30,8 +30,8 @@ def render_page1():
     with open('drugs (1).json') as rates_data:
         rates = json.load(rates_data)
     if 'year' in request.args:
-        return render_template('page1.html', options = get_year_options(rates), total = totals(request.args['year']), year = request.args['year'])
-    return render_template('page1.html', options = get_year_options(rates))
+        return render_template('page1.html', options = get_year_options(rates), soptions = get_state_options(rates), total = totals(request.args['year'], request.args['state']), year = request.args['year'], state = request.args['state'])
+    return render_template('page1.html', options = get_year_options(rates), soptions = get_state_options(rates))
 
 @app.route("/p2")
 def render_page2():
@@ -49,13 +49,22 @@ def get_year_options(rates):
             years.append(r["Year"])
             options += Markup("<option value=\"" + str(r["Year"]) + "\">" + str(r["Year"]) + "</option>")
     return options
+
+def get_state_options(rates):
+    states = []
+    soptions = ""
+    for r in rates:
+        if r["State"] not in states:
+            states.append(r["State"])
+            soptions += Markup("<option value=\"" + str(r["State"]) + "\">" + str(r["State"]) + "</option>")
+    return soptions
     
-def totals(year):
+def totals(year, state):
     with open('drugs (1).json') as corgis_data:
         rates = json.load(corgis_data)
     total = 0
     for r in rates:
-        if r["Year"] == year:  
+        if r["Year"] == year and r["State"] == state:  
             total += r["Totals"]["Illicit Drugs"]["Abuse Past Month"]["12-17"]    
     return str(total)
 	
