@@ -66,7 +66,7 @@ def totals(state):
     for r in rates:
         if state == r["State"]:  
             total += r["Totals"]["Illicit Drugs"]["Abuse Past Month"]["12-17"]
-	if year == r["2014"]:
+	if 2014 == r["Year"]:
 	    total+= r["Totals"]["Illicit Drugs"]["Abuse Past Month"]["12-17"]		    
     return total
 	
