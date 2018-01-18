@@ -63,7 +63,7 @@ def get_state_options(rates):
     for r in rates:
         if r["State"] not in states:
             states.append(r["State"])
-            soptions += Markup("<option value=\"" + str(r["State"]) + "\">" + str(r["State"]) + "</option>")
+            soptions += Markup("<option value=\"" + r["State"] + "\">" + r["State"] + "</option>")
     return soptions
 
 def get_rate(rates, selected_state):
