@@ -5,6 +5,19 @@
 
 {% block content %}
 <!--page content-->
-    <h1>Page 3</h1>
+  <h2>Compare drug abuse rate and alchol abuse total in minors of most recent year (pages 1 and 2) to earliest year recorded (2002).</h2>
+  <form action="/p3">
+    <select name="state">
+      {{ soptions }}
+    </select>
+    <br><br>
+    <input type="submit">
+  </form>
+  {% if abuseTotal is defined %}
+    <br>
+    <h2>{{ abuseTotal }}</h2>
+    <p>This state's total of minors who abuse alcohol in accordance to the most recent year recorded (2014) is {{ abuseTotal }}</p>
+  {% endif %}
+{% endblock %}
 
 {% endblock %}
