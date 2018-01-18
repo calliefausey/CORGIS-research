@@ -37,8 +37,7 @@ def render_page1():
     with open('drugs (1).json') as rates_data:
         rates = json.load(rates_data)
     if 'state' in request.args:
-	r = get_rate_data(rates, request.args['state'])
-        return render_template('page1.html', soptions = get_state_options(rates), abuseRate = r["Alcohol"]["In Minors"]["Abuse"])
+        return render_template('page1.html', soptions = get_state_options(rates), abuseRate = get_rate(rates, request.args['state']), state = request.args['state'])
     return render_template('page1.html', soptions = get_state_options(rates))
 
 @app.route("/p2")
@@ -66,6 +65,13 @@ def get_state_options(rates):
             states.append(r["State"])
             soptions += Markup("<option value=\"" + str(r["State"]) + "\">" + str(r["State"]) + "</option>")
     return soptions
+
+def get_rate(rates, selected_state):
+    abuseRate = 0
+    for r in rates:
+        if r["State"] == selected_state:
+            abuseRate += ["Alcohol"]["In Minors"]["Abuse"]
+    return abuseRate
     
 #def totals(year, state):
     #with open('drugs (1).json') as corgis_data:
@@ -76,10 +82,7 @@ def get_state_options(rates):
             #total += r["Totals"]["Illicit Drugs"]["Abuse Past Month"]["12-17"]    
     #return str(total)
 
-def get_rate_data(rates, get_state):
-    for r in rates:
-        if r["State"] == get_state:
-            return r
+
 
 
 	
